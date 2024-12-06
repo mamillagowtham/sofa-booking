@@ -1,8 +1,11 @@
 import React from 'react'
+import { Frontpage } from '../Components'
 
 const Landing = () => {
   return (
-    <div>Landing</div>
+   <>
+    <Frontpage/>
+    </>
   )
 }
 
