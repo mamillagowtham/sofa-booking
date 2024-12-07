@@ -5,3 +5,4 @@ export {default as Header} from "./Header";
 export {default as Navbar}  from "./Navbar";
 export {default as NavLinks} from "./NavLinks";
 export {default as Frontpage} from "./Frontpage";
+export {default as ErrorElement} from "./ErrorElement";
