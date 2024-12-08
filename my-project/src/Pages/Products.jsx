@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductsList from '../Components/ProductsList';
 import { customFetch } from '../utils';
+import {ProductsContainer,Filter}from '../Components/';
 
 const url = "/products"
 
@@ -17,8 +17,10 @@ const Products = () => {
   return (
     <>
     {/* filter */}
-    {/* productContainer */} 
-    <ProductsList/>
+    <Filter/>
+    {/* productContainer  */}
+    <ProductsContainer/>
+    {/* <ProductsList/> */}
     {/* pagination */}
     </>
   )
