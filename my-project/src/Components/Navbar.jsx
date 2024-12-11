@@ -1,29 +1,25 @@
-import React,{useState} from "react";
+import React, { useEffect, useState } from "react";
 import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
-import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import { FaBarsStaggered } from "react-icons/fa6";
 import NavLinks from "./NavLinks";
-
-
-
-
-const themes ={
-  winter : "winter",
-  dracula :"dracula",  
-}
+import { useSelector,useDispatch } from "react-redux";
+import { toggleTheme } from "../Features/user/userSlice";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(themes.winter);
+  const numItemsInCart = useSelector((state) => state.cartState.numberItemsInCart);
+  
+  const theme = useSelector(state=>state.userState.theme);
+  const isDarkTheme = theme === "dracula";
+  const dispatch = useDispatch();
 
-   const handleTheme = ()=>{
-    const {winter, dracula} =themes;
-     const newTheme = theme === winter? dracula : winter;
-     document.documentElement.setAttribute("data-theme",newTheme)
-    setTheme(newTheme);
-   }
+  const handleTheme = () => {
+   dispatch(toggleTheme());
+   
+  };
+ 
 
-  return (
-    <nav className="bg-base-200">
+  return ( <nav className="bg-base-200">
       <div className="navbar align-element">
         <div className="navbar-start">
           {/* {title} */}
@@ -51,19 +47,18 @@ const Navbar = () => {
         <div className="navbar-end">
           {/* theme setup */}
           <label className="swap swap-rotate">
-            <input type="checkbox" onChange={handleTheme} />
+            <input type="checkbox" onChange={handleTheme} defaultChecked = {isDarkTheme} />
             {/* sun */}
-            <BsSunFill className= "swap-on h-6 w-6"/>
+            <BsSunFill className="swap-on h-6 w-6" />
             {/* moon */}
-            <BsMoonFill className= "swap-off h-6 w-6"/>
-
+            <BsMoonFill className="swap-off h-6 w-6" />
           </label>
           {/* cart link */}
           <NavLink to="/cart" className="btn btn-ghost btn-circle btn-md">
             <div className="indicator">
               <BsCart3 className="w-6 h-6" />
               <span className="indicator-item badge badge-sm badge-primary">
-                8
+                {numItemsInCart}
               </span>
             </div>
           </NavLink>

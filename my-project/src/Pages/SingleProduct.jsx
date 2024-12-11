@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { customFetch, formatPrice } from "../utils";
 import { Link, useLoaderData } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Features/cart/cartSlice";
 
 export const loader = async ({ params }) => {
   const response = await customFetch(`/products/${params.id}`);
@@ -9,9 +11,11 @@ export const loader = async ({ params }) => {
 
 const SingleProduct = () => {
   const { product } = useLoaderData();
+  const dispatch = useDispatch();
 
   const { image, title, price, colors, description, company } =
     product.attributes;
+  console.log(product);
 
   const IndianAmount = formatPrice(price);
   const [ProductColor, setProductColor] = useState(colors[0]);
@@ -20,12 +24,29 @@ const SingleProduct = () => {
   const handleQuantity = (e) => {
     setQuantity(parseInt(e.target.value));
   };
+
+  const cartProduct = {
+    cartID: product.id + ProductColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    quantity,
+    ProductColor,
+    company,
+  };
+
+  //add to cart login
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
+  };
+
   return (
     <section>
       <div className="text-md breadcrumbs">
         <ul>
           <li>
-            <Link to = "/">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
             <Link to="/products"> Products</Link>
@@ -49,9 +70,11 @@ const SingleProduct = () => {
           <p className="mt-6 leading-8 ">{description}</p>
         </div>
         {/* colors */}
-            
+
         <div className="mt-6">
-          <h4 className="text-md font-medium tracking-wider capitalize">colors</h4>
+          <h4 className="text-md font-medium tracking-wider capitalize">
+            colors
+          </h4>
           <div className="mt-2">
             {colors.map((color) => {
               return (
@@ -72,11 +95,11 @@ const SingleProduct = () => {
         <div className="w-full max-w-xs">
           <label className="label">
             <h4 className="text-md font-medium tracking-wider capitalize">
-              Amount
+              amount
             </h4>
-          </label>
+          </label>  
           <select
-            className="select select-secondary select-bordered select-md"
+            className=" select select-secondary select-bordered select-md"
             value={quantity}
             onChange={handleQuantity}
           >
@@ -87,13 +110,14 @@ const SingleProduct = () => {
         </div>
         {/* cart button  */}
         <div className="mt-10">
-          <button className="btn btn-secondary btn-md" onClick={()=>{console.log("add to bag")}}>Add to bag</button>
+          <button className="btn btn-secondary btn-md" onClick={addToCart}>
+            Add to bag
+          </button>
         </div>
       </div>
     </section>
   );
-
-  return <div>SingleProduct</div>;
+  
 };
 
 export default SingleProduct;

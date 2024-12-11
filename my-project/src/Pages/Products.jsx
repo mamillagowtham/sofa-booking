@@ -2,12 +2,13 @@ import React from "react";
 import { customFetch } from "../utils";
 import { ProductsContainer, Filter } from "../Components/";
 import PaginationContainer from "../Components/PaginationContainer";
+import ProductsList from "../Components/ProductsList";
 
 const url = "/products";
 
 export const loader = async ({ request }) => {
-  // const params =new URL(request.url).searchParams.get("search")
-  // console.log(params)
+  const param =new URL(request.url).searchParams.get("search")
+  console.log(param)
   const params = Object.fromEntries([
     ...new URL(request.url).searchParams.entries(),
   ]);
@@ -24,9 +25,12 @@ const Products = () => {
     <>
       {/* filter */}  
       <Filter />
-      {/* productContainer  */}
+
+      {/* productsContainer  */}
       <ProductsContainer />
+      
       {/* <ProductsList/> */}
+
       {/* pagination */}
       <PaginationContainer/>
     </>

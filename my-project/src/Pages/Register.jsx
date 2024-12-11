@@ -1,8 +1,28 @@
 import React from "react";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
 import { FormInput, SubmitBtn } from "../Components";
+import { customFetch } from "../utils";
+import { toast } from "react-toastify";
 
+export const action =async({request})=>{
+  const formData = await request.formData();
+  const data = Object.formEntries(formData)
+  try{
+    const response = await customFetch("/auth/local/register",data)
+    toast.success("account created successfully ");
+    return redirect("/login")
+  }
+  catch(error){
+   console.log(error)
+
+   toast.error("please double check your credentials")
+   return null
+  }
+}
 const Register = () => {
+
+
+
   return (
     <section className="h-screen grid place-items-center">
       <Form

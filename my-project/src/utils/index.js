@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const productionURL = 'https://strapi-store-server.onrender.com/api';
+const productionUrl = 'https://strapi-store-server.onrender.com/api';
 export const customFetch = axios.create({
- baseURL:productionURL,
+ baseURL:productionUrl,
 })
 
 export const formatPrice =(price)=>{
@@ -12,4 +12,4 @@ export const formatPrice =(price)=>{
     }).format((price/100).toFixed(2));
 
     return IndianAmount;
-}
+};
