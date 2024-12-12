@@ -14,8 +14,12 @@ const themes = {
     return theme;
  }
 
+  const getUserFormLocalstorage = ()=>{
+    return JSON.parse(localStorage.getItem("user") || null)
+  }
+
 const initialState = {
- user : {userName:"dummy user"},
+ user : getThemeFromLocalStorage(),
  theme : getThemeFromLocalStorage(),
 
 };
@@ -25,7 +29,10 @@ const userSlice  = createSlice({
     initialState,
     reducers:{
         loginUser: (state,action)=>{
-            console.login("login");
+            const user = {...action.payload.user,token:action.payload.jwt};
+            state.user = user;
+            localStorage.setItem("user",JSON.stringify(user));
+            // console.log(action)
         },
         logoutUser:(state)=>{
            state.user = null;

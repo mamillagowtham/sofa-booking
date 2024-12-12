@@ -14,14 +14,17 @@ import {
   SingleProduct,
 } from "./Pages";
 import { ErrorElement } from "./Components";
-import  {loader as LandingLoader}  from "./Pages/Landing";
-import {loader as SingleProductLoader} from "./Pages/SingleProduct";
-import {loader as ProductsLoader} from "./Pages/Products";
-
-
-
+import  {loader as landingLoader}  from "./Pages/Landing";
+import {loader as singleProductLoader} from "./Pages/SingleProduct";
+import {loader as productsLoader} from "./Pages/Products";
+import {loader as checkoutLoader} from "./Pages/CheckoutPage"
+import {action as CheckoutAction} from "./Components/CheckOutForm"
+import {loader as ordersLoader} from "./Pages/Order"
 //actions
-import {action as registerAction} from  "./Pages/Register"
+import {action as registerAction} from  "./Pages/Register";
+import {action as loginAction} from "./Pages/Login"; 
+
+import {store} from "./store"
 
 const router = createBrowserRouter([
   {
@@ -33,35 +36,38 @@ const router = createBrowserRouter([
         index:true,
         element:<Landing/>,
         errorElement:<ErrorElement/>,
-        loader:LandingLoader
+        loader:landingLoader
       },
       {
         path:"products",
         element:<Products/>,
         errorElement:<ErrorElement/>,
-        loader:ProductsLoader,
+        loader:productsLoader,
       },
       {
         path:"products/:id",
         element:<SingleProduct/>,
         errorElement:<ErrorElement/>,
-        loader:SingleProductLoader,
+        loader:singleProductLoader,
       },
       {
         path:"cart",
         element:<Cart/>
       },
       {
-        path: "About",
+        path: "about",
         element:<About/>
       },
       {
         path:"checkout",
-        element:<CheckoutPage/>
+        element:<CheckoutPage/>,
+        loader : checkoutLoader(store),
+        action :CheckoutAction(store)
       },
       {
         path:"orders",
-        element:<Order/>
+        element:<Order/>,
+        loader: ordersLoader(store)
       }
     ]
   },
@@ -69,12 +75,13 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
     errorElement: <Error />,
+    action :loginAction(store)
   },
   {
     path: "/register",
     element: <Register/>,
     errorElement: <Error />,
-    action:registerAction,
+    action: registerAction,
   }
 ]);
 

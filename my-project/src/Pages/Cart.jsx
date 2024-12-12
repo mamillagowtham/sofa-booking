@@ -8,16 +8,17 @@ import CartTotals from "../Components/CartTotals";
 const Cart = () => {
   const numItemsInCart = useSelector(
     (state) => state.cartState.numberItemsInCart);
-    
+
 
   const {user} = useSelector((state)=>state.userState.user);
+  console.log(user);
   if (numItemsInCart === 0) {
     return <SectionTitle text="Your cart is empty" />;
   }
   return (
     <>
       <SectionTitle text="shopping cart" />
-      <div className="mt-8 grid gap-8 lg:grid cols-12">
+      <div className="mt-8 grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-8">
           <CartItemsList />
         </div>
