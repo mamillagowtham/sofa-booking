@@ -2,7 +2,7 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import day from "dayjs";
 
-const OrdersList = () => {
+const OrderList = () => {
   const { orders, meta } = useLoaderData();
   console.log(orders);
 
@@ -43,4 +43,4 @@ const OrdersList = () => {
   );
 };
 
-export default OrdersList;
+export default OrderList;

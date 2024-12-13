@@ -1,12 +1,13 @@
 import React from "react";
-import { customFetch } from "../utils";
-import { redirect } from "react-router-dom";
+import { customFetch, formatPrice } from "../utils";
+import { toast } from "react-toastify";
+import { Form, redirect } from "react-router-dom";
 import FormInput from "./FormInput";
 import SubmitBtn from "./SubmitBtn";
 import { clearCart } from "../Features/cart/cartSlice";
 
 export const action =
-  (store) =>
+  (store,queryClient) =>
   async ({ request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData); // Object.fromEntries(formData);
@@ -32,6 +33,9 @@ export const action =
           },
         }
       );
+
+      queryClient.removeQueries(["orders"]);
+
       store.dispatch(clearCart());
       toast.success("order placed successfully");
       return redirect("/orders");
@@ -50,7 +54,9 @@ const CheckOutForm = () => {
   return (
     <Form method="POST" className="flex flex-col gap-y-4">
       <h4 className="font-medium text-xl">Shipping Information mom</h4>
-      <FormInput type="text" label="first name " name="address" />
+      <FormInput type="text" label="first name " name="name" />
+      <FormInput type="text" label="address" name="address" />
+
       <dv className="mt-4">
         <SubmitBtn text="place your order" />
       </dv>

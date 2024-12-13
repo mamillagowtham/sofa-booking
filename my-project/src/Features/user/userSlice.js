@@ -19,7 +19,7 @@ const themes = {
   }
 
 const initialState = {
- user : getThemeFromLocalStorage(),
+ user : getUserFormLocalstorage(),
  theme : getThemeFromLocalStorage(),
 
 };

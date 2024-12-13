@@ -7,10 +7,10 @@ import CartTotals from "../Components/CartTotals";
 
 const Cart = () => {
   const numItemsInCart = useSelector(
-    (state) => state.cartState.numberItemsInCart);
+    (state) => state.cartState.numberItemsInCart
+  );
 
-
-  const {user} = useSelector((state)=>state.userState.user);
+  const { user } = useSelector((state) => state.userState.user);
   console.log(user);
   if (numItemsInCart === 0) {
     return <SectionTitle text="Your cart is empty" />;
@@ -24,11 +24,16 @@ const Cart = () => {
         </div>
         <div className="lg:col-span-4 lg:pl-4">
           {/* cartTotal */}
-          <CartTotals/>
-          {user?  
-         (<Link to="/checkout" className="btn btn-primary btn-block mt-8">proceed to check</Link>):
-          (<Link to="/login" className="btn btn-primary btn-block mt-8">Please Login </Link>)
-          }
+          <CartTotals />
+          {user ? (
+            <Link to="/checkout" className="btn btn-primary btn-block mt-8">
+              proceed to check
+            </Link>
+          ) : (
+            <Link to="/login" className="btn btn-primary btn-block mt-8">
+              Please Login{" "}
+            </Link>
+          )}
         </div>
       </div>
     </>

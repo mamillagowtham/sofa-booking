@@ -1,5 +1,5 @@
 import React from "react";
-import { FormInput, SubmitBtn } from "../Components";
+import { FormInput, SubmitBtn } from "../Components/index";
 import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils";
@@ -47,7 +47,6 @@ const Login = () => {
       dispatch(loginUser(data));
       toast.success("welcome guest user");
       navigate("/");
-      user;
     } catch (error) {
       console.log(error);
       toast.error("guest user login error.please try later");
@@ -74,6 +73,7 @@ const Login = () => {
         />
         <div className="mt-4">
           <SubmitBtn text="login" />
+          </div>
           <button
             onClick={loginAsGuestUser}
             type="button"
@@ -90,7 +90,6 @@ const Login = () => {
               Register
             </Link>
           </p>
-        </div>
       </Form>
     </section>
   );
