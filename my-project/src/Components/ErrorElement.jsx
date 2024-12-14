@@ -9,4 +9,4 @@ const ErrorElement = () => {
   )
 }
 
-export default ErrorElement
+export default ErrorElement;

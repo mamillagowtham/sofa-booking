@@ -15,28 +15,26 @@ const Header = () => {
     dispatch(logoutUser());
     dispatch(clearCart());
     queryClient.removeQueries();
-
   };
-
   return (
     <header className="bg-neutral py-2 text-neutral-content">
       <div className="align-element flex justify-center sm:justify-end">
         {user ? (
-          <div className="flex gap-x-2  sm:gap-x-8 items-center">
-            <p className="text-xs sm:text-sm ">hello,{user.userName}</p>
-            7 <button
+          <div className="flex gap-x-2 sm:gap-x-8 items-center">
+            <p className="text-xs sm:text-sm">Hello, {user.username}</p>
+            <button
               className="btn btn-xs btn-outline btn-primary"
               onClick={handleLogout}
             >
-              Logout
+              logout
             </button>
           </div>
         ) : (
-          <div className=" flex gap-x-6 justify-center items-center">
+          <div className="flex gap-x-6 justify-center items-center">
             <Link to="/login" className="link link-hover text-xs sm:text-sm">
-              sign in/guest
+              Sign in /Guest
             </Link>
-            <Link to="./register link link-hover text-xs sm:text-sm">
+            <Link to="/register" className="link link-hover text-xs sm:text-sm">
               create a account
             </Link>
           </div>

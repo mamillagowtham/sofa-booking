@@ -9,7 +9,7 @@ import { toggleTheme } from "../Features/user/userSlice";
 const Navbar = () => {
   const numItemsInCart = useSelector((state) => state.cartState.numberItemsInCart);
   
-  const theme = useSelector(state=>state.userState.theme);
+  const theme = useSelector((state)=>state.userState.theme);
   const isDarkTheme = theme === "dracula";
   const dispatch = useDispatch();
 

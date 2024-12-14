@@ -5,12 +5,12 @@ import CartItem from  './CartItem';
 const CartItemsList = () => {
   const cartItems =   useSelector((state)=>state.cartState.cartItem); 
   return (
-  <>
-   {cartItems.map((item)=>{
-       return <CartItem key={item.id} cartItem = {item} />
+  <div>
+   {cartItems.map((item,index)=>{
+       return <CartItem key={index} cartItem = {item} />
        
    })}
-   </>
+   </div>
   )
 }
 

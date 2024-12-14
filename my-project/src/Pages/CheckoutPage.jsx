@@ -1,6 +1,7 @@
 import React from 'react'
 import { CartTotals, CheckOutForm, SectionTitle } from '../Components';
 import { redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const loader  = (store)=>async()=>{
   const user = store.getState().userState.user;

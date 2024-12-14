@@ -68,28 +68,28 @@ const Login = () => {
         <FormInput
           type="password"
           label="password"
-          name="identifier"
+          name="password"
           defaultValue="secret"
         />
         <div className="mt-4">
           <SubmitBtn text="login" />
-          </div>
-          <button
-            onClick={loginAsGuestUser}
-            type="button"
-            className="btn btn-secondary btn-block mt-1"
+        </div>
+        <button
+          onClick={loginAsGuestUser}
+          type="button"
+          className="btn btn-secondary btn-block mt-1"
+        >
+          Guest User
+        </button>
+        <p className="text-center">
+          Not a member yet?
+          <Link
+            to="/register"
+            className="ml-2 link-hover link-primary capitalize"
           >
-            Guest User
-          </button>
-          <p className="text-center">
-            Not a member yet?
-            <Link
-              to="/register"
-              className="ml-2 link-hover link-primary capitalize"
-            >
-              Register
-            </Link>
-          </p>
+            Register
+          </Link>
+        </p>
       </Form>
     </section>
   );

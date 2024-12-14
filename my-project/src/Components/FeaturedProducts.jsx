@@ -5,7 +5,7 @@ import SectionTitle from './SectionTitle';
 
 const FeaturedProducts = () => {
   return ( <div className='pt-24'>
-        <SectionTitle text ="featured products"/>
+        <SectionTitle text ="featuredProducts"/>
         <ProductsGrid/>
     </div>
   );

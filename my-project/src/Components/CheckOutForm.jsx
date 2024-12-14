@@ -13,7 +13,7 @@ export const action =
     const { name, address } = Object.fromEntries(formData); // Object.fromEntries(formData);
     const user = store.getState().userState.user;
     const { cartItem, orderTotal, numberItemsInCart } =
-      store.getState().cartStart;
+      store.getState().cartState;
 
     const info = {
       name,
@@ -57,9 +57,9 @@ const CheckOutForm = () => {
       <FormInput type="text" label="first name " name="name" />
       <FormInput type="text" label="address" name="address" />
 
-      <dv className="mt-4">
+      <div className="mt-4">
         <SubmitBtn text="place your order" />
-      </dv>
+      </div>
     </Form>
   );
 };

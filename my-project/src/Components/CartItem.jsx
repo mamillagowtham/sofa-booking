@@ -16,7 +16,7 @@ const CartItem = ({ cartItem }) => {
   };
 
   const { cartID, title, price, image, quantity, ProductColor, company } =
-    cartItem;
+    cartItem || {};
   console.log(cartItem);
   return (
     <article

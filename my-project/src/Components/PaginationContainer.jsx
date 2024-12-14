@@ -39,11 +39,11 @@ const PaginationContainer = () => {
         </button>
         {pages.map((pageNumber) => {
           return (
-            <button
-              className={`btn btn-xs sm:btn-md border-none  join-item ${(pageNumber ==
+            <button 
+              className= {`btn btn-xs sm:btn-md border-none  join-item ${(pageNumber ==
                 page ? "bg-base-300 border-base-300" : "")}`}
                 onClick={()=>handlePageChange(pageNumber)}
-            >
+          key={pageNumber}  >
               {pageNumber}
             </button>
           );

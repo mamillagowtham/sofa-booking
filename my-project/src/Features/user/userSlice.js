@@ -43,7 +43,7 @@ const userSlice  = createSlice({
         toggleTheme:(state)=>{
               const {dracula,winter} = themes;
               state.theme = state.theme ===dracula ? winter :dracula;   
-              document.documentElement.setAttribute("data-time",state.theme);
+              document.documentElement.setAttribute("data-theme",state.theme);
               localStorage.setItem("theme",state.theme);
         },
     }
