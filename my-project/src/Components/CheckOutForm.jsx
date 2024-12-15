@@ -7,10 +7,12 @@ import SubmitBtn from "./SubmitBtn";
 import { clearCart } from "../Features/cart/cartSlice";
 
 export const action =
-  (store,queryClient) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData); // Object.fromEntries(formData);
+
+
     const user = store.getState().userState.user;
     const { cartItem, orderTotal, numberItemsInCart } =
       store.getState().cartState;
@@ -34,7 +36,9 @@ export const action =
         }
       );
 
+      console.log("QueryClient:", queryClient);
       queryClient.removeQueries(["orders"]);
+
 
       store.dispatch(clearCart());
       toast.success("order placed successfully");
@@ -42,10 +46,10 @@ export const action =
     } catch (error) {
       console.log(error);
       const errorMessage =
-        error?.response?.data?.error?.message ||
+        error?.response?.data?.error?.message || 
         "there was an error  placing  your oder";
       toast.error(errorMessage);
-      if (error?.response?.status === 401 || 403) redirect("/login");
+      if (error?.response?.status === 401 || 403)  redirect("/login");
       return null;
     }
   };
